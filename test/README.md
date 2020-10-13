@@ -34,17 +34,20 @@ tsne-cuda目前僅支持LINUX環境，支持CUDA 9.0、9.2、10.0、10.1。
     X_tsne = TSNE(n_components=2, perplexity=20, learning_rate=500).fit_transform(X)
 # 範例
     python test.py
-![](test/results.png)  
+經過t-SNE降維後，6個Session各自成群是因為神經訊號會隨著時間變異，而Session2、Session3因為是同一天，所以兩個分佈相似。
+  ![](results.png)  
+## options
 --tsne: cuda_tsne.選擇是否用cuda_tsne，預設sklearn_tsne  
 --session:1,2,3,4,5,6.選擇Session，預設1 ~ 6  
 --sort:unsort, sorted.選擇是否sorted，預設unsort  
 --perplexity:5 ~ 50， t-SNE的困惑度，預設30  
 --lr:10 ~ 1000， t-SNE的learning_rate，預設500  
-perplexity、learning_rate的設定可參考[How to Use t-SNE Effectively](https://distill.pub/2016/misread-tsne/)  
 例：用cuda_tsne、Session2 ~5、sorted data、perplexity=20、learning_rate=200
 
     python test.py --tsne cuda_tsne --session 2345 --sort sorted --perplexity 10 --lr 200  
+perplexity、learning_rate的設定可參考[How to Use t-SNE Effectively](https://distill.pub/2016/misread-tsne/)  
 # Datasets
+為Sabes lab公開的恆河猴實驗數據，猴子Indy前6個Session，取spike(500 ~ 5000Hz)再計算Spike counts。
 https://zenodo.org/record/3854034#.X4UH_HUzY5l
 # 參考資料
 http://lvdmaaten.github.io/tsne/  
